@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "6628303B-5295-4599-BBCE-673CC6366FDE",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:StarlingRoundUpUIKit.xcodeproj",
+      "identifier" : "A1E80C362A72E5F700DE7691",
+      "name" : "StarlingRoundUpUIKit"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:StarlingRoundUpUIKit.xcodeproj",
+        "identifier" : "A1E80C4C2A72E5FB00DE7691",
+        "name" : "StarlingRoundUpUIKitTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:StarlingRoundUpUIKit.xcodeproj",
+        "identifier" : "A1E80C562A72E5FB00DE7691",
+        "name" : "StarlingRoundUpUIKitUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
