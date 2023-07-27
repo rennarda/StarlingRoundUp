@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A1C3A5152A7302A9009C3EA4 /* AccountsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C3A5142A7302A9009C3EA4 /* AccountsService.swift */; };
 		A1E80C3B2A72E5F700DE7691 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E80C3A2A72E5F700DE7691 /* AppDelegate.swift */; };
 		A1E80C3D2A72E5F700DE7691 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E80C3C2A72E5F700DE7691 /* SceneDelegate.swift */; };
-		A1E80C3F2A72E5F700DE7691 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E80C3E2A72E5F700DE7691 /* ViewController.swift */; };
+		A1E80C3F2A72E5F700DE7691 /* RoundUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E80C3E2A72E5F700DE7691 /* RoundUpViewController.swift */; };
 		A1E80C422A72E5F700DE7691 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1E80C402A72E5F700DE7691 /* Main.storyboard */; };
 		A1E80C442A72E5FB00DE7691 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1E80C432A72E5FB00DE7691 /* Assets.xcassets */; };
 		A1E80C472A72E5FB00DE7691 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1E80C452A72E5FB00DE7691 /* LaunchScreen.storyboard */; };
@@ -48,10 +49,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A1C3A5142A7302A9009C3EA4 /* AccountsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsService.swift; sourceTree = "<group>"; };
 		A1E80C372A72E5F700DE7691 /* StarlingRoundUpUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarlingRoundUpUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1E80C3A2A72E5F700DE7691 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1E80C3C2A72E5F700DE7691 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A1E80C3E2A72E5F700DE7691 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A1E80C3E2A72E5F700DE7691 /* RoundUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundUpViewController.swift; sourceTree = "<group>"; };
 		A1E80C412A72E5F700DE7691 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A1E80C432A72E5FB00DE7691 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1E80C462A72E5FB00DE7691 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -101,6 +103,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A14D9E062A7301D500BD4F3B /* API Client and Emdpoints */ = {
+			isa = PBXGroup;
+			children = (
+				A1C3A5142A7302A9009C3EA4 /* AccountsService.swift */,
+				A1E80C842A72E65300DE7691 /* APIClient.swift */,
+			);
+			path = "API Client and Emdpoints";
+			sourceTree = "<group>";
+		};
+		A1D10EC52A73023A00A3510B /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A1E80C3E2A72E5F700DE7691 /* RoundUpViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		A1E80C2E2A72E5F700DE7691 = {
 			isa = PBXGroup;
 			children = (
@@ -125,10 +144,10 @@
 		A1E80C392A72E5F700DE7691 /* StarlingRoundUpUIKit */ = {
 			isa = PBXGroup;
 			children = (
-				A1E80C842A72E65300DE7691 /* APIClient.swift */,
+				A14D9E062A7301D500BD4F3B /* API Client and Emdpoints */,
 				A1E80C3A2A72E5F700DE7691 /* AppDelegate.swift */,
 				A1E80C3C2A72E5F700DE7691 /* SceneDelegate.swift */,
-				A1E80C3E2A72E5F700DE7691 /* ViewController.swift */,
+				A1D10EC52A73023A00A3510B /* ViewControllers */,
 				A1E80C6A2A72E61400DE7691 /* Extensions */,
 				A1E80C6D2A72E61400DE7691 /* Models */,
 				A1E80C402A72E5F700DE7691 /* Main.storyboard */,
@@ -322,8 +341,9 @@
 			files = (
 				A1E80C762A72E61400DE7691 /* Date+extensions.swift in Sources */,
 				A1E80C7C2A72E61400DE7691 /* Account.swift in Sources */,
+				A1C3A5152A7302A9009C3EA4 /* AccountsService.swift in Sources */,
 				A1E80C752A72E61400DE7691 /* Codable+extensions.swift in Sources */,
-				A1E80C3F2A72E5F700DE7691 /* ViewController.swift in Sources */,
+				A1E80C3F2A72E5F700DE7691 /* RoundUpViewController.swift in Sources */,
 				A1E80C782A72E61400DE7691 /* AccountsResponse.swift in Sources */,
 				A1E80C772A72E61400DE7691 /* CurrencyCode.swift in Sources */,
 				A1E80C792A72E61400DE7691 /* TransactionsResponse.swift in Sources */,
