@@ -6,9 +6,11 @@
 //
 
 import XCTest
-@testable import Starling_Round_Up
+@testable import StarlingRoundUpUIKit
 
 final class AccountTests: XCTestCase {
 
-    
+    func test_something() {
+        let account = Account.mock
+    }
 }

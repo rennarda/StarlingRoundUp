@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol AccountsServiceProtocol {
+public protocol AccountsServiceProtocol {
     func getAccounts() async throws -> [Account]
 }
 

@@ -7,17 +7,29 @@
 
 import Foundation
 
+public typealias AccountID = UUID
+public typealias AccountCategoryID = UUID
+
 /// A bank account
-struct Account: Decodable {
-    let accountUid: UUID
-    let accountType: AccountType
-    let defaultCategory: UUID
-    let currency: CurrencyCode
-    let name: String
-    let createdAt: Date
+public struct Account: Decodable {
+    public let accountUid: AccountID
+    public let accountType: AccountType
+    public let defaultCategory: AccountCategoryID
+    public let currency: CurrencyCode
+    public let name: String
+    public let createdAt: Date
+
+    public init(accountUid: AccountID, accountType: Account.AccountType, defaultCategory: AccountCategoryID, currency: CurrencyCode, name: String, createdAt: Date) {
+        self.accountUid = accountUid
+        self.accountType = accountType
+        self.defaultCategory = defaultCategory
+        self.currency = currency
+        self.name = name
+        self.createdAt = createdAt
+    }
     
     /// An enum for the type of bank account
-    enum AccountType: String, Codable {
+    public enum AccountType: String, Codable {
         case primary = "PRIMARY"
         case additional = "ADDITIONAL"
         case load = "LOAN"

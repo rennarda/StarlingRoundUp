@@ -6,7 +6,8 @@
 //
 
 import Foundation
-struct CurrencyAmount: Decodable {
-    let currency: CurrencyCode
-    let minorUnits: Int64
+
+public struct CurrencyAmount: Decodable {
+    public let currency: CurrencyCode
+    public let minorUnits: Int64
 }

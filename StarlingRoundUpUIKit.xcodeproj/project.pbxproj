@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A178FE272A7449760094D3AB /* Account+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A178FE262A7449760094D3AB /* Account+Extensions.swift */; };
+		A178FE292A744B8A0094D3AB /* XCTest+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A178FE282A744B8A0094D3AB /* XCTest+extensions.swift */; };
+		A1887D492A74490700B6DC0C /* MockAccountsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1887D472A7448DC00B6DC0C /* MockAccountsService.swift */; };
 		A1C3A5152A7302A9009C3EA4 /* AccountsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C3A5142A7302A9009C3EA4 /* AccountsService.swift */; };
+		A1C3A5172A744641009C3EA4 /* TransactionsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C3A5162A744641009C3EA4 /* TransactionsServiceProtocol.swift */; };
 		A1E80C3B2A72E5F700DE7691 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E80C3A2A72E5F700DE7691 /* AppDelegate.swift */; };
 		A1E80C3D2A72E5F700DE7691 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E80C3C2A72E5F700DE7691 /* SceneDelegate.swift */; };
 		A1E80C3F2A72E5F700DE7691 /* RoundUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E80C3E2A72E5F700DE7691 /* RoundUpViewController.swift */; };
@@ -29,6 +33,8 @@
 		A1E80C812A72E62600DE7691 /* TransactionsResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E80C7E2A72E62600DE7691 /* TransactionsResponseTests.swift */; };
 		A1E80C822A72E62600DE7691 /* AccountsResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E80C7F2A72E62600DE7691 /* AccountsResponseTests.swift */; };
 		A1E80C852A72E65300DE7691 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E80C842A72E65300DE7691 /* APIClient.swift */; };
+		A1F8268A2A744C5B0046C2F3 /* RoundUpViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F826892A744C5B0046C2F3 /* RoundUpViewModelTests.swift */; };
+		A1F8268C2A744CC60046C2F3 /* MockTransactionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F8268B2A744CC60046C2F3 /* MockTransactionsService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +55,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A178FE262A7449760094D3AB /* Account+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+Extensions.swift"; sourceTree = "<group>"; };
+		A178FE282A744B8A0094D3AB /* XCTest+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+extensions.swift"; sourceTree = "<group>"; };
+		A1887D472A7448DC00B6DC0C /* MockAccountsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAccountsService.swift; sourceTree = "<group>"; };
 		A1C3A5142A7302A9009C3EA4 /* AccountsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsService.swift; sourceTree = "<group>"; };
+		A1C3A5162A744641009C3EA4 /* TransactionsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsServiceProtocol.swift; sourceTree = "<group>"; };
 		A1E80C372A72E5F700DE7691 /* StarlingRoundUpUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarlingRoundUpUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1E80C3A2A72E5F700DE7691 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1E80C3C2A72E5F700DE7691 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +86,8 @@
 		A1E80C7F2A72E62600DE7691 /* AccountsResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsResponseTests.swift; sourceTree = "<group>"; };
 		A1E80C832A72E63100DE7691 /* StarlingRoundUpUIKit.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = StarlingRoundUpUIKit.xctestplan; sourceTree = "<group>"; };
 		A1E80C842A72E65300DE7691 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		A1F826892A744C5B0046C2F3 /* RoundUpViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundUpViewModelTests.swift; sourceTree = "<group>"; };
+		A1F8268B2A744CC60046C2F3 /* MockTransactionsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockTransactionsService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,8 +120,27 @@
 			children = (
 				A1C3A5142A7302A9009C3EA4 /* AccountsService.swift */,
 				A1E80C842A72E65300DE7691 /* APIClient.swift */,
+				A1C3A5162A744641009C3EA4 /* TransactionsServiceProtocol.swift */,
 			);
 			path = "API Client and Emdpoints";
+			sourceTree = "<group>";
+		};
+		A178FE2A2A744B8F0094D3AB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A178FE282A744B8A0094D3AB /* XCTest+extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A1C3A5182A7448A1009C3EA4 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				A178FE262A7449760094D3AB /* Account+Extensions.swift */,
+				A1F8268B2A744CC60046C2F3 /* MockTransactionsService.swift */,
+				A1887D472A7448DC00B6DC0C /* MockAccountsService.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		A1D10EC52A73023A00A3510B /* ViewControllers */ = {
@@ -161,10 +192,13 @@
 		A1E80C502A72E5FB00DE7691 /* StarlingRoundUpUIKitTests */ = {
 			isa = PBXGroup;
 			children = (
+				A1C3A5182A7448A1009C3EA4 /* Mocks */,
 				A1E80C7F2A72E62600DE7691 /* AccountsResponseTests.swift */,
 				A1E80C7D2A72E62600DE7691 /* AccountTests.swift */,
 				A1E80C7E2A72E62600DE7691 /* TransactionsResponseTests.swift */,
+				A1F826892A744C5B0046C2F3 /* RoundUpViewModelTests.swift */,
 				A1E80C512A72E5FB00DE7691 /* StarlingRoundUpUIKitTests.swift */,
+				A178FE2A2A744B8F0094D3AB /* Extensions */,
 			);
 			path = StarlingRoundUpUIKitTests;
 			sourceTree = "<group>";
@@ -341,6 +375,7 @@
 			files = (
 				A1E80C762A72E61400DE7691 /* Date+extensions.swift in Sources */,
 				A1E80C7C2A72E61400DE7691 /* Account.swift in Sources */,
+				A1C3A5172A744641009C3EA4 /* TransactionsServiceProtocol.swift in Sources */,
 				A1C3A5152A7302A9009C3EA4 /* AccountsService.swift in Sources */,
 				A1E80C752A72E61400DE7691 /* Codable+extensions.swift in Sources */,
 				A1E80C3F2A72E5F700DE7691 /* RoundUpViewController.swift in Sources */,
@@ -361,8 +396,13 @@
 			files = (
 				A1E80C822A72E62600DE7691 /* AccountsResponseTests.swift in Sources */,
 				A1E80C812A72E62600DE7691 /* TransactionsResponseTests.swift in Sources */,
+				A1F8268A2A744C5B0046C2F3 /* RoundUpViewModelTests.swift in Sources */,
 				A1E80C522A72E5FB00DE7691 /* StarlingRoundUpUIKitTests.swift in Sources */,
+				A178FE292A744B8A0094D3AB /* XCTest+extensions.swift in Sources */,
+				A178FE272A7449760094D3AB /* Account+Extensions.swift in Sources */,
 				A1E80C802A72E62600DE7691 /* AccountTests.swift in Sources */,
+				A1887D492A74490700B6DC0C /* MockAccountsService.swift in Sources */,
+				A1F8268C2A744CC60046C2F3 /* MockTransactionsService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

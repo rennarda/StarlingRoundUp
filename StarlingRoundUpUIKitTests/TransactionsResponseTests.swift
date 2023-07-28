@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Starling_Round_Up
+@testable import StarlingRoundUpUIKit
 
 final class TransactionsResponseTests: XCTestCase {
 
