@@ -46,7 +46,6 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Round up"/>
                                 <connections>
-                                    <action selector="fetchAccounts:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jYI-Zt-EM9"/>
                                     <action selector="performRoundup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0uq-XI-kh9"/>
                                 </connections>
                             </button>

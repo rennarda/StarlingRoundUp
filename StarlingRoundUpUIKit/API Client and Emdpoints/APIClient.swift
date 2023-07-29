@@ -50,6 +50,7 @@ class StarlingAPIClient {
     private static func request<T: Decodable, U: Encodable>(url: URL, method: HTTPMethod, with body: U? = nil) async throws -> T {
         var request = URLRequest(url: url)
         request.setStandardHeaders(withBearerToken: Self.authToken)
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         do {
             request.httpBody = try body.encode()
         } catch let error as EncodingError {
@@ -84,6 +85,7 @@ class StarlingAPIClient {
         guard let httpResponse = response as? HTTPURLResponse,
                 200...299 ~= httpResponse.statusCode
         else {
+            //TODO: Parse an API error response
             throw APIError.invalidResponse
         }
         

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A14DD77F2A7562DE003E0189 /* SavingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14DD77E2A7562DE003E0189 /* SavingsService.swift */; };
+		A14DD7812A7563CE003E0189 /* SavingsGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14DD7802A7563CE003E0189 /* SavingsGoal.swift */; };
+		A14DD7842A7564B2003E0189 /* SavingsGoals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14DD7832A7564B2003E0189 /* SavingsGoals.swift */; };
 		A14F67DE2A75406900B91504 /* CurrencyAmountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F67DD2A75406800B91504 /* CurrencyAmountTests.swift */; };
 		A14F67E32A754DED00B91504 /* RoundUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F67E22A754DED00B91504 /* RoundUpViewModel.swift */; };
 		A178FE272A7449760094D3AB /* Account+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A178FE262A7449760094D3AB /* Account+Extensions.swift */; };
@@ -58,6 +61,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A14DD77E2A7562DE003E0189 /* SavingsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavingsService.swift; sourceTree = "<group>"; };
+		A14DD7802A7563CE003E0189 /* SavingsGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SavingsGoal.swift; path = StarlingRoundUpUIKit/Models/SavingsGoal.swift; sourceTree = SOURCE_ROOT; };
+		A14DD7832A7564B2003E0189 /* SavingsGoals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavingsGoals.swift; sourceTree = "<group>"; };
 		A14F67DD2A75406800B91504 /* CurrencyAmountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyAmountTests.swift; sourceTree = "<group>"; };
 		A14F67E22A754DED00B91504 /* RoundUpViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundUpViewModel.swift; sourceTree = "<group>"; };
 		A178FE262A7449760094D3AB /* Account+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+Extensions.swift"; sourceTree = "<group>"; };
@@ -125,10 +131,19 @@
 			isa = PBXGroup;
 			children = (
 				A1C3A5142A7302A9009C3EA4 /* AccountsService.swift */,
+				A14DD77E2A7562DE003E0189 /* SavingsService.swift */,
 				A1E80C842A72E65300DE7691 /* APIClient.swift */,
 				A1C3A5162A744641009C3EA4 /* TransactionsService.swift */,
 			);
 			path = "API Client and Emdpoints";
+			sourceTree = "<group>";
+		};
+		A14DD7822A756493003E0189 /* API Requests */ = {
+			isa = PBXGroup;
+			children = (
+				A14DD7832A7564B2003E0189 /* SavingsGoals.swift */,
+			);
+			path = "API Requests";
 			sourceTree = "<group>";
 		};
 		A14F67E12A754DED00B91504 /* ViewModels */ = {
@@ -242,8 +257,10 @@
 			isa = PBXGroup;
 			children = (
 				A1E80C6E2A72E61400DE7691 /* CurrencyCode.swift */,
+				A14DD7822A756493003E0189 /* API Requests */,
 				A1E80C6F2A72E61400DE7691 /* API Responses */,
 				A1E80C722A72E61400DE7691 /* Transaction.swift */,
+				A14DD7802A7563CE003E0189 /* SavingsGoal.swift */,
 				A1E80C732A72E61400DE7691 /* CurrencyAmount.swift */,
 				A1E80C742A72E61400DE7691 /* Account.swift */,
 			);
@@ -396,11 +413,14 @@
 				A1C3A5152A7302A9009C3EA4 /* AccountsService.swift in Sources */,
 				A1E80C752A72E61400DE7691 /* Codable+extensions.swift in Sources */,
 				A1E80C3F2A72E5F700DE7691 /* RoundUpViewController.swift in Sources */,
+				A14DD7842A7564B2003E0189 /* SavingsGoals.swift in Sources */,
 				A14F67E32A754DED00B91504 /* RoundUpViewModel.swift in Sources */,
+				A14DD7812A7563CE003E0189 /* SavingsGoal.swift in Sources */,
 				A1E80C782A72E61400DE7691 /* AccountsResponse.swift in Sources */,
 				A1E80C772A72E61400DE7691 /* CurrencyCode.swift in Sources */,
 				A1E80C792A72E61400DE7691 /* TransactionsResponse.swift in Sources */,
 				A1E80C7B2A72E61400DE7691 /* CurrencyAmount.swift in Sources */,
+				A14DD77F2A7562DE003E0189 /* SavingsService.swift in Sources */,
 				A1E80C3B2A72E5F700DE7691 /* AppDelegate.swift in Sources */,
 				A1E80C3D2A72E5F700DE7691 /* SceneDelegate.swift in Sources */,
 				A1E80C7A2A72E61400DE7691 /* Transaction.swift in Sources */,

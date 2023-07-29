@@ -11,12 +11,14 @@ import Combine
 public enum RoundUpViewModelError: Error {
     case invalidDateRange
     case noPrimaryAccountFound
+    case noValidTransactionsToRoundup
 }
 
 @MainActor
 public class RoundUpViewModel: ObservableObject {
     private let accountsService: AccountsServiceProtocol
     private let transactionsService: TransactionsServiceProtocol
+    private let savingsService: SavingsServiceProtocol
 
     @Published public var transactions: [Transaction] = [] {
         didSet {
@@ -37,17 +39,22 @@ public class RoundUpViewModel: ObservableObject {
     }
         
     init(accountsService: AccountsServiceProtocol,
-         transactionsService: TransactionsServiceProtocol)
+         transactionsService: TransactionsServiceProtocol,
+         savingsService: SavingsServiceProtocol
+    )
     {
         self.accountsService = accountsService
         self.transactionsService = transactionsService
+        self.savingsService = savingsService
     }
     
     /// Convenience method to create a `RoundUpViewModel` with the default dependencies
     /// - Returns: a `RoundUpViewModel`
     static func `default`() -> RoundUpViewModel {
         RoundUpViewModel(accountsService: AccountsService(),
-                         transactionsService: TransactionsService())
+                         transactionsService: TransactionsService(),
+                         savingsService: SavingsService()
+        )
     }
     
     /// Get the accounts for this user from the accounts service
@@ -108,6 +115,31 @@ public class RoundUpViewModel: ObservableObject {
             }
         }
         return allRoundups.keys.compactMap{ allRoundups[$0]}
+    }
+    
+    /// Perform the roundup by creating a savings goal for each currency, and transferring the roundup amount
+    public func performRoundup() async {
+        guard let primaryAccount else {
+            error = RoundUpViewModelError.noPrimaryAccountFound
+            return
+        }
+        let roundups = calculateRoundup(for: transactions)
+        guard !roundups.isEmpty else {
+            error = RoundUpViewModelError.noValidTransactionsToRoundup
+            return
+        }
+        // there is one entry in roundups per currency
+        // create a savings goal for each currency, and transfer the roundup
+        // TODO: fetch the existing savings goals first - out of scope
+        for roundup in roundups {
+            do {
+                let savingsGoal = try await savingsService.createSavingsGoal(named: "Test savings goal", in: primaryAccount, currency: roundup.currency)
+                try await savingsService.add(roundup, to: savingsGoal, in: primaryAccount)
+            } catch {
+                self.error = error
+                return
+            }
+        }
     }
     
     func filtered(transactions: [Transaction]) -> [Transaction] {

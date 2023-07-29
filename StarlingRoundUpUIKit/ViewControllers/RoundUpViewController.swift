@@ -49,7 +49,7 @@ class RoundUpViewController: UIViewController {
 
     @IBAction func performRoundup(_ sender: Any) {
         Task {
-            // Perform roundup
+            await viewModel.performRoundup()
         }
     }
     
