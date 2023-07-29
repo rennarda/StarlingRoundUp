@@ -11,12 +11,12 @@ import StarlingRoundUpUIKit
 struct MockTransactionsService: TransactionsServiceProtocol {
     var error: Error?
     
-    func getTransactions(for: StarlingRoundUpUIKit.Account, categoryID: StarlingRoundUpUIKit.AccountCategoryID, in: Range<Date>) async throws -> [StarlingRoundUpUIKit.Transaction] {
+    func getTransactions(for: StarlingRoundUpUIKit.Account, in: Range<Date>) async throws -> [StarlingRoundUpUIKit.Transaction] {
 
         if let error {
             throw error
         } else {
-            return []
+            return Transaction.mock
         }
     }
 }
