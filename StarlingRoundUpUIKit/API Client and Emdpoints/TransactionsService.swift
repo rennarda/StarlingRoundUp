@@ -20,14 +20,16 @@ struct TransactionsService: TransactionsServiceProtocol {
     func getTransactions(for account: Account, in dateRange: Range<Date>) async throws -> [Transaction] {
         let queryItems = [
             URLQueryItem(name: "minTransactionTimestamp",
-                         value: DateFormatter.starlingFormatter.string(from: dateRange.lowerBound)),
+                         value: ISO8601DateFormatter().string(from: dateRange.lowerBound)
+                .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)),
             URLQueryItem(name: "maxTransactionTimestamp",
-                         value: DateFormatter.starlingFormatter.string(from: dateRange.lowerBound))
+                         value: ISO8601DateFormatter().string(from: dateRange.upperBound)
+                .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))
         ]
 
         let url = StarlingAPIClient.baseURL
             .appending(path: "feed/account")
-            .appending(path: account.accountUid.uuidString)
+            .appending(path: account.accountUid.uuidString.lowercased())
             .appending(path: "settled-transactions-between")
             .appending(queryItems: queryItems)
             

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22146" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="dark"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22122"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -16,36 +17,84 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lG3-uW-aaw">
-                                <rect key="frame" x="159" y="195" width="75" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <action selector="fetchAccounts:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jYI-Zt-EM9"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Account Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVy-t1-FqJ">
-                                <rect key="frame" x="140" y="270" width="113" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVy-t1-FqJ">
+                                <rect key="frame" x="140.33333333333334" y="59.000000000000007" width="112.33333333333334" height="20.333333333333336"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select start date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8SC-31-ean">
+                                <rect key="frame" x="33.000000000000007" y="102" width="125.66666666666669" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="cwo-eL-xP4">
+                                <rect key="frame" x="177.66666666666663" y="95" width="175.33333333333337" height="34.333333333333343"/>
+                                <connections>
+                                    <action selector="didSelectDate:" destination="BYZ-38-t0r" eventType="valueChanged" id="CFA-vU-Geg"/>
+                                </connections>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oDo-49-vhX">
+                                <rect key="frame" x="33" y="242.33333333333334" width="320" height="20.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lG3-uW-aaw">
+                                <rect key="frame" x="144.66666666666666" y="327" width="97" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Round up"/>
+                                <connections>
+                                    <action selector="fetchAccounts:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jYI-Zt-EM9"/>
+                                    <action selector="performRoundup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0uq-XI-kh9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Lwt-S0-olU">
+                                <rect key="frame" x="112" y="160" width="169" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Fetch Transactions"/>
+                                <connections>
+                                    <action selector="fetchTransactions:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HW3-3q-auh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="oDo-49-vhX" firstAttribute="trailing" secondItem="cwo-eL-xP4" secondAttribute="trailing" id="65z-v1-X9Y"/>
+                            <constraint firstItem="Lwt-S0-olU" firstAttribute="top" secondItem="cwo-eL-xP4" secondAttribute="bottom" constant="30.666666666666657" id="9qc-8y-rdY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cwo-eL-xP4" secondAttribute="trailing" constant="40" id="Ffp-lA-Pfo"/>
+                            <constraint firstItem="Lwt-S0-olU" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="I3B-PK-PjX"/>
+                            <constraint firstItem="oDo-49-vhX" firstAttribute="top" secondItem="Lwt-S0-olU" secondAttribute="bottom" constant="47.333333333333343" id="Kah-pk-TJZ"/>
+                            <constraint firstItem="lG3-uW-aaw" firstAttribute="centerX" secondItem="oDo-49-vhX" secondAttribute="centerX" id="NkB-DK-kCe"/>
+                            <constraint firstItem="8SC-31-ean" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="33" id="Skz-rJ-kuI"/>
+                            <constraint firstItem="8SC-31-ean" firstAttribute="centerY" secondItem="cwo-eL-xP4" secondAttribute="centerY" id="VX7-Vm-uf8"/>
+                            <constraint firstItem="lG3-uW-aaw" firstAttribute="top" secondItem="oDo-49-vhX" secondAttribute="bottom" constant="64.333333333333314" id="d1l-nQ-UF7"/>
+                            <constraint firstItem="bVy-t1-FqJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="d9j-yx-0bC"/>
+                            <constraint firstItem="8SC-31-ean" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="43" id="pho-qj-TeV"/>
+                            <constraint firstItem="bVy-t1-FqJ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="qYd-7Q-oYS"/>
+                            <constraint firstItem="cwo-eL-xP4" firstAttribute="leading" secondItem="8SC-31-ean" secondAttribute="trailing" constant="19" id="udo-sk-kfQ"/>
+                            <constraint firstItem="oDo-49-vhX" firstAttribute="leading" secondItem="8SC-31-ean" secondAttribute="leading" id="zCH-Ac-O8r"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="accountName" destination="bVy-t1-FqJ" id="ZDE-X8-1rX"/>
+                        <outlet property="datePicker" destination="cwo-eL-xP4" id="Hkq-tu-RQZ"/>
+                        <outlet property="fetchTransactionsButton" destination="Lwt-S0-olU" id="0Tr-wk-cVs"/>
+                        <outlet property="roundUpSummaryLabel" destination="oDo-49-vhX" id="IWb-KX-UhE"/>
+                        <outlet property="roundupButton" destination="lG3-uW-aaw" id="dzC-KD-auY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-25" y="4"/>
+            <point key="canvasLocation" x="-25.190839694656489" y="3.5211267605633805"/>
         </scene>
     </scenes>
     <resources>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

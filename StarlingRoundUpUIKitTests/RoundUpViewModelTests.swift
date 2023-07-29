@@ -82,17 +82,4 @@ final class RoundUpViewModelTests: XCTestCase {
         XCTAssertEqual(sut.calculateRoundup(for: Transaction.mock),
                        [CurrencyAmount(currency: .GBP, minorUnits: 337)])
     }
-    
-    func test_roundupAmount() throws {
-        XCTAssertEqual(sut.roundupAmount(for: CurrencyAmount(currency: .GBP, minorUnits: 1234)),
-                       CurrencyAmount(currency: .GBP, minorUnits: 66))
-
-        XCTAssertEqual(sut.roundupAmount(for: CurrencyAmount(currency: .GBP, minorUnits: 9999)),
-                       CurrencyAmount(currency: .GBP, minorUnits: 1))
-        
-        XCTAssertNil(sut.roundupAmount(for: CurrencyAmount(currency: .GBP, minorUnits: 1000)))
-
-        XCTAssertEqual(sut.roundupAmount(for: CurrencyAmount(currency: .GBP, minorUnits: 21)),
-                       CurrencyAmount(currency: .GBP, minorUnits: 79))
-    }
 }

@@ -14,6 +14,8 @@ extension Date {
 
 extension DateFormatter {
     /// A standardised date formatter for parsing for formatting dates for the Starling API
+    /// For some reason the ISO8601 date formatter doesn't work for parsing API responses
+    /// ..but is required for submitting requests.
     public static var starlingFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = Date.starlingFormat
