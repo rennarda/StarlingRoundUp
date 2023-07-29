@@ -10,6 +10,8 @@
 		A14DD77F2A7562DE003E0189 /* SavingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14DD77E2A7562DE003E0189 /* SavingsService.swift */; };
 		A14DD7812A7563CE003E0189 /* SavingsGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14DD7802A7563CE003E0189 /* SavingsGoal.swift */; };
 		A14DD7842A7564B2003E0189 /* SavingsGoals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14DD7832A7564B2003E0189 /* SavingsGoals.swift */; };
+		A14DD7862A7591A7003E0189 /* MockSavingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14DD7852A7591A7003E0189 /* MockSavingsService.swift */; };
+		A14DD7882A759245003E0189 /* SavingsGoal+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14DD7872A759245003E0189 /* SavingsGoal+Extensions.swift */; };
 		A14F67DE2A75406900B91504 /* CurrencyAmountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F67DD2A75406800B91504 /* CurrencyAmountTests.swift */; };
 		A14F67E32A754DED00B91504 /* RoundUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F67E22A754DED00B91504 /* RoundUpViewModel.swift */; };
 		A178FE272A7449760094D3AB /* Account+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A178FE262A7449760094D3AB /* Account+Extensions.swift */; };
@@ -64,6 +66,8 @@
 		A14DD77E2A7562DE003E0189 /* SavingsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavingsService.swift; sourceTree = "<group>"; };
 		A14DD7802A7563CE003E0189 /* SavingsGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SavingsGoal.swift; path = StarlingRoundUpUIKit/Models/SavingsGoal.swift; sourceTree = SOURCE_ROOT; };
 		A14DD7832A7564B2003E0189 /* SavingsGoals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavingsGoals.swift; sourceTree = "<group>"; };
+		A14DD7852A7591A7003E0189 /* MockSavingsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSavingsService.swift; sourceTree = "<group>"; };
+		A14DD7872A759245003E0189 /* SavingsGoal+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SavingsGoal+Extensions.swift"; sourceTree = "<group>"; };
 		A14F67DD2A75406800B91504 /* CurrencyAmountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyAmountTests.swift; sourceTree = "<group>"; };
 		A14F67E22A754DED00B91504 /* RoundUpViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundUpViewModel.swift; sourceTree = "<group>"; };
 		A178FE262A7449760094D3AB /* Account+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+Extensions.swift"; sourceTree = "<group>"; };
@@ -167,8 +171,10 @@
 			children = (
 				A1F8268D2A7455210046C2F3 /* Transaction+Extensions.swift */,
 				A178FE262A7449760094D3AB /* Account+Extensions.swift */,
+				A14DD7872A759245003E0189 /* SavingsGoal+Extensions.swift */,
 				A1F8268B2A744CC60046C2F3 /* MockTransactionsService.swift */,
 				A1887D472A7448DC00B6DC0C /* MockAccountsService.swift */,
+				A14DD7852A7591A7003E0189 /* MockSavingsService.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -435,12 +441,14 @@
 				A14F67DE2A75406900B91504 /* CurrencyAmountTests.swift in Sources */,
 				A1E80C822A72E62600DE7691 /* AccountsResponseTests.swift in Sources */,
 				A1E80C812A72E62600DE7691 /* TransactionsResponseTests.swift in Sources */,
+				A14DD7882A759245003E0189 /* SavingsGoal+Extensions.swift in Sources */,
 				A1F8268A2A744C5B0046C2F3 /* RoundUpViewModelTests.swift in Sources */,
 				A1E80C522A72E5FB00DE7691 /* StarlingRoundUpUIKitTests.swift in Sources */,
 				A1F8268E2A7455210046C2F3 /* Transaction+Extensions.swift in Sources */,
 				A178FE292A744B8A0094D3AB /* XCTest+extensions.swift in Sources */,
 				A178FE272A7449760094D3AB /* Account+Extensions.swift in Sources */,
 				A1E80C802A72E62600DE7691 /* AccountTests.swift in Sources */,
+				A14DD7862A7591A7003E0189 /* MockSavingsService.swift in Sources */,
 				A1887D492A74490700B6DC0C /* MockAccountsService.swift in Sources */,
 				A1F8268C2A744CC60046C2F3 /* MockTransactionsService.swift in Sources */,
 			);

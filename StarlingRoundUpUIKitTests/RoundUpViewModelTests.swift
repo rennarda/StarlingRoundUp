@@ -13,12 +13,17 @@ final class RoundUpViewModelTests: XCTestCase {
     var sut: RoundUpViewModel!
     var accountsService: MockAccountsService!
     var transactionsService: MockTransactionsService!
+    var savingsService: MockSavingsService!
     
     override func setUpWithError() throws {
         accountsService = MockAccountsService()
         transactionsService = MockTransactionsService()
+        savingsService = MockSavingsService()
         
-        sut = RoundUpViewModel(accountsService: accountsService , transactionsService: transactionsService)
+        sut = RoundUpViewModel(accountsService: accountsService,
+                               transactionsService: transactionsService,
+                               savingsService: savingsService
+        )
     }
     
     override func tearDownWithError() throws {
@@ -36,7 +41,7 @@ final class RoundUpViewModelTests: XCTestCase {
     
     func test_getAccountsSetsError() async throws {
         accountsService.error = APIError.invalidResponse
-        sut = RoundUpViewModel(accountsService: accountsService, transactionsService: transactionsService)
+        sut = RoundUpViewModel(accountsService: accountsService, transactionsService: transactionsService, savingsService: savingsService)
         await sut.fetchAccounts()
         XCTAssertNotNil(sut.error)
     }
@@ -48,7 +53,7 @@ final class RoundUpViewModelTests: XCTestCase {
     
     func test_getTransactionsSetsError() async throws {
         transactionsService.error = APIError.invalidResponse
-        sut = RoundUpViewModel(accountsService: accountsService, transactionsService: transactionsService)
+        sut = RoundUpViewModel(accountsService: accountsService, transactionsService: transactionsService, savingsService: savingsService)
         await sut.fetchTransactions(in: Account.mock, over: .now ..< .now.addingTimeInterval(1))
         XCTAssertNotNil(sut.error)
         XCTAssertTrue(sut.transactions.isEmpty)
@@ -81,5 +86,35 @@ final class RoundUpViewModelTests: XCTestCase {
         // Based on data in the mock
         XCTAssertEqual(sut.calculateRoundup(for: Transaction.mock),
                        [CurrencyAmount(currency: .GBP, minorUnits: 337)])
+    }
+
+    func test_performRoundup_noAccount() async throws {
+        sut.transactions = Transaction.mock
+        await sut.performRoundup()
+        XCTAssertNotNil(sut.error)
+        XCTAssertEqual(sut.error as? RoundUpViewModelError, RoundUpViewModelError.noPrimaryAccountFound)
+    }
+
+    func test_performRoundup_noTransactions() async throws {
+        sut.accounts = [Account.mock]
+        sut.transactions = []
+        await sut.performRoundup()
+        XCTAssertNotNil(sut.error)
+        XCTAssertEqual(sut.error as? RoundUpViewModelError, RoundUpViewModelError.noValidTransactionsToRoundup)
+    }
+
+
+    
+    func test_performRoundup() async throws {
+        sut.startDate = DateFormatter.starlingFormatter.date(from: "2023-07-27T00:00:00.000Z")
+        sut.accounts = [Account.mock]
+        sut.transactions = Transaction.mock
+        await sut.performRoundup()
+        XCTAssertNil(sut.error)
+        XCTAssertEqual(savingsService.roundupsAdded.count, 1)
+        let (amount, goal, account) = savingsService.roundupsAdded[0]
+        XCTAssertEqual(amount, CurrencyAmount(currency: .GBP, minorUnits: 337))
+        XCTAssertEqual(account.accountUid, Account.mock.accountUid)
+        XCTAssertEqual(goal.id, SavingsGoal.mock.id)
     }
 }

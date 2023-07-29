@@ -7,9 +7,11 @@
 
 import Foundation
 
+/// Methods to interact with the `accounts` service endpoints
 public protocol AccountsServiceProtocol {
     /// Get the accounts for this user
     /// - Returns: an array of `Account` for this user
+    /// - Throws: an `APIError` if something went wrong
     func getAccounts() async throws -> [Account]
 }
 

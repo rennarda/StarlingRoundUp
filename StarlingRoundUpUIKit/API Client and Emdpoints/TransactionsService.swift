@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Methods for interacting with the `transaction feed` endpoints
 public protocol TransactionsServiceProtocol {
     /// Get the transactions for an account in the specified date range
     /// - Parameters:

@@ -14,24 +14,30 @@ public enum RoundUpViewModelError: Error {
     case noValidTransactionsToRoundup
 }
 
+/// The view model for the Round Up view
 @MainActor
 public class RoundUpViewModel: ObservableObject {
     private let accountsService: AccountsServiceProtocol
     private let transactionsService: TransactionsServiceProtocol
     private let savingsService: SavingsServiceProtocol
 
+    // The transactions found for the specified date range
     @Published public var transactions: [Transaction] = [] {
         didSet {
             roundupSummary = roundupDescription()
         }
     }
+    // The user's accounts
     @Published public var accounts: [Account] = []
+    // Any error that has occurred that should be shown to the user
     @Published public var error: Error?
+    // The selected start date
     @Published public var startDate: Date? {
         didSet {
             transactions = []
         }
     }
+    // A text summary of what will be rounded up.
     @Published public var roundupSummary: String?
     
     var primaryAccount: Account? {
@@ -130,7 +136,7 @@ public class RoundUpViewModel: ObservableObject {
         }
         // there is one entry in roundups per currency
         // create a savings goal for each currency, and transfer the roundup
-        // TODO: fetch the existing savings goals first - out of scope
+        // Out of scope: fetch the existing savings goals first
         for roundup in roundups {
             do {
                 let savingsGoal = try await savingsService.createSavingsGoal(named: "Test savings goal", in: primaryAccount, currency: roundup.currency)
@@ -142,10 +148,17 @@ public class RoundUpViewModel: ObservableObject {
         }
     }
     
+    /// The transactions filtered down to only those that need rounding up
+    /// - Parameter transactions: all the transactions
+    /// - Returns: the filtered transactions
+    ///
+    /// Assumption: only `OUT` transactions need to be rounded up
     func filtered(transactions: [Transaction]) -> [Transaction] {
         transactions.filter({ $0.direction == .out })
     }
     
+    /// A textual description of what will be rounded up
+    /// - Returns: the string to display
     func roundupDescription() -> String {
         guard !transactions.isEmpty else {
             return "No transactions to roundup."

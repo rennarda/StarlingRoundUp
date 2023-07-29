@@ -13,4 +13,9 @@ public typealias SavingsGoalID = UUID
 public struct SavingsGoal: Decodable {
     let name: String
     let id: SavingsGoalID
+    
+    public init(name: String, id: SavingsGoalID) {
+        self.name = name
+        self.id = id
+    }    
 }

@@ -7,8 +7,23 @@
 
 import Foundation
 
+/// Methods to interact with the `savings goals` service endpoints
 public protocol SavingsServiceProtocol {
+    /// Create a savings goal
+    /// - Parameters:
+    ///   - named: the name to give the savings goal
+    ///   - in: the account to create the goal in
+    ///   - currency: the currency for the goal
+    /// - Returns: a `SavingsGoal`
+    /// - Throws: an `APIError` is something went wrong
     func createSavingsGoal(named: String, in: Account, currency: CurrencyCode) async throws -> SavingsGoal
+    
+    /// Add currency to a savings goal
+    /// - Parameters:
+    ///   - _: the amount of currency to add to the goal
+    ///   - to: the savings goal to add the currency to
+    ///   - in: the account that the savings goal belongs to
+    /// - Throws: An `APIError` if something went wrong
     func add(_: CurrencyAmount, to: SavingsGoal, in: Account) async throws
     // Out of scope: fetch current savings goals
 }
