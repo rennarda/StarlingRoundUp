@@ -1,5 +1,7 @@
 #  StarlingRoundUp
 
+**Author**: Andrew Rennard
+
 This is an implementation of the Starling Bank Technical Challenge for iOS, using Swift 5.8 and UIKit.
 
 The minimum deployment target was set to iOS 16 (following clarification of the requirements on Slack). It was developed using Xcode 15 beta 5.
