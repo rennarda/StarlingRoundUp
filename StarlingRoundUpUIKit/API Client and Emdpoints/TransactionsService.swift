@@ -8,7 +8,7 @@
 import Foundation
 
 /// Methods for interacting with the `transaction feed` endpoints
-public protocol TransactionsServiceProtocol {
+public protocol TransactionsServiceProtocol: ServiceProtocol {
     /// Get the transactions for an account in the specified date range
     /// - Parameters:
     ///   - for: the account to fetch transactions for
@@ -18,6 +18,8 @@ public protocol TransactionsServiceProtocol {
 }
 
 struct TransactionsService: TransactionsServiceProtocol {
+    var apiClient: StarlingAPIClientProtocol = StarlingAPIClient.shared
+
     func getTransactions(for account: Account, in dateRange: Range<Date>) async throws -> [Transaction] {
         let queryItems = [
             URLQueryItem(name: "minTransactionTimestamp",
@@ -34,7 +36,7 @@ struct TransactionsService: TransactionsServiceProtocol {
             .appending(path: "settled-transactions-between")
             .appending(queryItems: queryItems)
             
-        let response: TransactionsResponse = try await StarlingAPIClient.get(url: url)
+        let response: TransactionsResponse = try await apiClient.get(url: url)
         return response.feedItems
     }
 }

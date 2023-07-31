@@ -33,13 +33,37 @@ extension URLRequest {
     }
 }
 
+public protocol StarlingAPIClientProtocol {
+    /// Perform a `GET` request
+    /// - Parameters:
+    ///   - url: the URL to request
+    /// - Returns: The decoded response type
+    func get<T: Decodable>(url: URL) async throws -> T
+    
+    /// Perform am HTTP POST request
+    /// - Parameters:
+    ///   - url: the URL to request
+    ///   - body: an `Encodable` type to set as the request body
+    /// - Returns: The decoded response type
+    func post<T: Decodable, U: Encodable>(url: URL, with: U) async throws -> T
+    
+    /// Perform an HTTP PUT request
+    /// - Parameters:
+    ///   - url: the URL to request
+    ///   - body: an encodable type to set as the request body
+    /// - Returns: The decoded response type
+    func put<T: Decodable, U: Encodable>(url: URL, with: U) async throws -> T
+}
+
 /// An API Client for the Starling API
-class StarlingAPIClient {
+class StarlingAPIClient: StarlingAPIClientProtocol {
+    /// replace this with a working access token
     static let authToken = """
-    eyJhbGciOiJQUzI1NiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAA_21TQZKjMAz8yhbn0RQBAzG3ve0H9gHClhPXgE3ZJrNTW_v3NdgJITU3ultqSZb4W2jvi77AWYOkyb77gG7U5jKg-XgXdireCr8MMYK6RrGqbaEuGwmMVRyGRjTQnflJVJI1TYsxmP7MRX9qedk2bd2Vb4XGkIim5XwlUAi7mPDLjpLcby2z91kyDoqpCphqCbCuGYiaVyc6V-rMePQO9oNMzlBVi8jOgBWnmCEFIG9LqLATxGUsVLGYEcf6KQR5v9fBUnBoB2LAcDjF_IFDJdqhqztWIsp1YGFnWh8ldQrXrVUwOFHvCOWPFyF8zS-ClmSCVprckR-1DwcmAyldbLInqcMDJCUEFNeJHpFLuFqnfdwQaCP1TcsFx6QNOKIRuROBToKwJjg7Jt-VyZo1SrsJg7YGrAK1GJnricUHO93bpgl1zp7QSAzUSxop0ANuYRMFjAh7EeEq3vGWOeMX0V1KIJsksAeBnvCSPZO2f0JwaDyKtecHDaMVcfrdOxFg12d4ZXOWs0qP91Kp9oHaohwJ0nM4AH-UPp2O7h5vcRUeLnbv48DlUQ_c5vPMpOFUfPZvLHbxG69dTKbiSnIZSUIce78aTyHEAZc5wxnvZxJ_93hF8Zisk0_lj-y97pH9Jh_sp3nwgdYGQPjbKzVLlajnnW6reF1y8e8_uAWUfaEEAAA.xYiMRvevAPVIAEwv25syxLMv1INYgRSe6YOaehiNyLBbB5Ah_sgVDk4et76oUuk4pdr5fBmmzFV3S6yWNzpMUfwTC9hN8PkuvIUgCLeDiRLIDyFwvkYOwnyXMrOlf-5iePNJjrgKZWN2mtDYy3i_s1Ngl2zQC5ypw47In1xGrXZb2dU56v2FZKslFWltM0HacTphXm1Jml2AKKTnuOgZNwoOVhvsSVvnTDErOrzlMnplnF4CqVZpP99IcezZFM3Tnb8shtP2uPmx0UBLMPhbJNAEkBOxmx5TYoL09Y-IRt5rVK6-Mv9zUIdrU6mhboF2FoQG2aTOiWU3deu1W6L_eENosTK6CitRSMT_MXmFqxmqpr3nB-CtCe5aB7VSSi1Wm5uP0msQ6lZhtAsb_pJXkdSFTAOTbqAEo4aWiX2_eUoswIYs5oAgkOzqsrzOxX_3Hvypfh1xZOLNQBacsmyHJLgvmWRM25gkEURyug8ROMjv1QSJv7SfUzagbsF1XeFfn-gnX7tRcpUWBtHwwaPfffN-XqNeMB7IHstJoEfKqHdgKIM4CfWsuUt7fM6UYcZgrd-9D4zHojJASHuOUOgaLX3wWPZ5qM7NbqKsVZebBAAmOPmO20tdGOlcU50WId8iUMECbPCz3YlOXLpW6Ql8i1EnOKCSJFfHLuMtBVxmfdk
+    eyJhbGciOiJQUzI1NiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAA_21Ty5KcMAz8lRTn1RYPYx633PID-QBhyzOuBZuyzWy2Uvn3GMwMw9Te6G6pJVnib6a9z_oMZw2SJvvuA7pRm8uA5uNd2Cl7y_wyxAhqasVKzqHKawmMlR0MtaihabtClJLVNccYTH_mrC94l7cty6vyLdMYEtF0DV8JFMIuJvyyoyT3W8vdu5WsA8VUCUxxAqwqBqLqyoLaUrWsi97BfpBJGUqqlrcNB4GMAeNFAUOLCnjD63zIh7YuecyIY_0Ugrw_6mAuOuADxSwcCsBy6KAUfGiqhuWIch1Y2JnWR0mdwnVrFQxO1DtC-eNFCF_zi6AlmaCVJnfmR-3DidmBlC422ZPU4QGSEgKK60SPyCVcrdM-bgi0kfqm5YJj0gYc0Yi9E4FOgrAmODsm35XZNWuUdhMGbQ1YBWoxcq8nFh_sdG-bJtR79oRGYqBe0kiBHnALmyhgRNiLCFfxjrfMGb-I7lICu0kCRxDoCS-7Z9KOTwgOjUex9vygYbQiTn94JwLs-gyv7J7lrNLjvVSqfaK2KEeC9BxOwJ-lT6eju8dbXIWHiz36OHH7qCdu83lm0nAqPvs3Fof4jdchJlNxJbmMJCGOfVyNpxDigMu8wxnvZxJ_93hF8Zisk0_lz-y97pn9Jh_sp3nwgdYGQPjbKzVLlajnnW6reF1y9u8_NOcoAaEEAAA.cq-c084t-0hP1JlIQA8-QdAQe4r_krtcz0UyCfWRySp2oJIJwL4BEg_w4BAWK5PoOpO5R1i-000qhIlp1HidNYkaoX1fV0INE96Qv_SSnCD0KfYwPU7gCrgBI-5nEB3hjQ-q86dwts2pqUhuhsbgzMVeg1hVvjdWdyWj-CMimBBUsoL_avqoX6g-UwpWJMQGV_Pqcifpyax6HTm-HTBFPxzbLyZnpJJq3gzHhK0rzCehtipXLNJ-I7kdhpj7bALoBzOVvKYOgXKtwcbCk3mGv6mBSSWQmQFmhYS1yIJMWnHF0xaVl9AN9P94WqIKBCzOojX5NPk46JE0oZogCFIjiDzYFZIQHEMjLTFfQgLh0LuHkUJVuyEbqeQN2CXHcCW7RYQ1kRpJpQCUYyRBvx7NVZs82rSY2z7PeVUGTHrw-XZK7doKXoUrC9QZyMQllwk9r5ebCi9CqDTdFoHM3ofTzbe0dlwGzkPm9l7qgaHD64-UFQYbFrCNAzF3_Q3xIFQe5toPGN3kWL-9NCQsL2TGr0AtOxY0Tkul041EEs7SxG-6plb9BjEhLhSgQQHkftwofnW1cn72LFq551aD7Aqis8mY6BZZQUo3nxZdFfFEVOIYe7rRLycVQuHu-jXDqmSESwMfFPYH5mWHNy74WrbN5Lh3RmPs_dPVuZJD_OiyrYY
     """
     
     static let baseURL = URL(string: "https://api-sandbox.starlingbank.com/api/v2")!
+    static let shared = StarlingAPIClient()
     
     /// Perform a request with an encodable body type
     /// - Parameters:
@@ -47,7 +71,7 @@ class StarlingAPIClient {
     ///   - method: the HTTP method to use
     ///   - body: an encodable type to set as the request body
     /// - Returns: The decoded response type
-    private static func request<T: Decodable, U: Encodable>(url: URL, method: HTTPMethod, with body: U? = nil) async throws -> T {
+    private func request<T: Decodable, U: Encodable>(url: URL, method: HTTPMethod, with body: U? = nil) async throws -> T {
         var request = URLRequest(url: url)
         request.setStandardHeaders(withBearerToken: Self.authToken)
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -67,7 +91,7 @@ class StarlingAPIClient {
     ///   - url: the URL to request
     ///   - method: the HTTP method to use
     /// - Returns: The decoded response type
-    private static func request<T: Decodable>(url: URL, method: HTTPMethod) async throws -> T {
+    private func request<T: Decodable>(url: URL, method: HTTPMethod) async throws -> T {
         var request = URLRequest(url: url)
         request.setStandardHeaders(withBearerToken: Self.authToken)
         request.httpMethod = method.rawValue
@@ -78,7 +102,7 @@ class StarlingAPIClient {
     /// - Parameters:
     ///   - request: the `URLRequest` to perform
     /// - Returns: The decoded response type
-    private static func perform<T: Decodable>(_ request: URLRequest) async throws -> T {
+    private func perform<T: Decodable>(_ request: URLRequest) async throws -> T {
     
         let (data, response) = try await URLSession.shared.data(for: request)
 
@@ -96,29 +120,15 @@ class StarlingAPIClient {
         }
     }
     
-    /// Perform a `GET` request
-    /// - Parameters:
-    ///   - url: the URL to request
-    /// - Returns: The decoded response type
-    static func get<T: Decodable>(url: URL) async throws -> T {
+    func get<T: Decodable>(url: URL) async throws -> T {
         try await request(url: url, method: .get)
     }
     
-    /// Perform am HTTP POST request
-    /// - Parameters:
-    ///   - url: the URL to request
-    ///   - body: an `Encodable` type to set as the request body
-    /// - Returns: The decoded response type
-    static func post<T: Decodable, U: Encodable>(url: URL, with body: U) async throws -> T {
+    func post<T: Decodable, U: Encodable>(url: URL, with body: U) async throws -> T {
         try await request(url: url, method: .get, with: body)
     }
     
-    /// Perform an HTTP PUT request
-    /// - Parameters:
-    ///   - url: the URL to request
-    ///   - body: an encodable type to set as the request body
-    /// - Returns: The decoded response type
-    static func put<T: Decodable, U: Encodable>(url: URL, with body: U) async throws -> T {
+    func put<T: Decodable, U: Encodable>(url: URL, with body: U) async throws -> T {
         try await request(url: url, method: .put, with: body)
     }
 }

@@ -9,6 +9,8 @@ import Foundation
 import StarlingRoundUpUIKit
 
 struct MockAccountsService: AccountsServiceProtocol {
+    var apiClient: StarlingAPIClientProtocol = MockAPIClient()
+    
     var error: Error?
     
     func getAccounts() async throws -> [Account] {

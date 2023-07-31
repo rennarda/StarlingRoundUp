@@ -9,6 +9,7 @@ import Foundation
 import StarlingRoundUpUIKit
 
 class MockSavingsService: SavingsServiceProtocol {
+    var apiClient: StarlingAPIClientProtocol = MockAPIClient()
     var error: Error?
     var roundupsAdded: [(CurrencyAmount, SavingsGoal, Account)] = []
     
@@ -20,7 +21,7 @@ class MockSavingsService: SavingsServiceProtocol {
         }
     }
     
-    func add(_ amount: StarlingRoundUpUIKit.CurrencyAmount, to goal: StarlingRoundUpUIKit.SavingsGoal, in account: StarlingRoundUpUIKit.Account) async throws
+    func add(_ amount: StarlingRoundUpUIKit.CurrencyAmount, to goal: StarlingRoundUpUIKit.SavingsGoal, in account: StarlingRoundUpUIKit.Account, transferID: UUID) async throws
     {
         if let error {
             throw error

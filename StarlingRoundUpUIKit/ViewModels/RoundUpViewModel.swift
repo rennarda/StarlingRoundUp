@@ -140,7 +140,7 @@ public class RoundUpViewModel: ObservableObject {
         for roundup in roundups {
             do {
                 let savingsGoal = try await savingsService.createSavingsGoal(named: "Test savings goal", in: primaryAccount, currency: roundup.currency)
-                try await savingsService.add(roundup, to: savingsGoal, in: primaryAccount)
+                try await savingsService.add(roundup, to: savingsGoal, in: primaryAccount, transferID: UUID())
             } catch {
                 self.error = error
                 return

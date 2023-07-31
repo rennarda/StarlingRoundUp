@@ -7,8 +7,12 @@
 
 import Foundation
 
+public protocol ServiceProtocol {
+    var apiClient: StarlingAPIClientProtocol { get }
+}
+
 /// Methods to interact with the `accounts` service endpoints
-public protocol AccountsServiceProtocol {
+public protocol AccountsServiceProtocol: ServiceProtocol {
     /// Get the accounts for this user
     /// - Returns: an array of `Account` for this user
     /// - Throws: an `APIError` if something went wrong
@@ -16,9 +20,11 @@ public protocol AccountsServiceProtocol {
 }
 
 struct AccountsService: AccountsServiceProtocol {
+    var apiClient: StarlingAPIClientProtocol = StarlingAPIClient.shared
+    
     func getAccounts() async throws -> [Account] {
         let url = StarlingAPIClient.baseURL.appendingPathComponent("accounts")
-        let response: AccountsResponse = try await StarlingAPIClient.get(url: url)
+        let response: AccountsResponse = try await apiClient.get(url: url)
         return response.accounts
     }
     

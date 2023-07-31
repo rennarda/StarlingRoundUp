@@ -8,7 +8,7 @@
 import Foundation
 
 /// Methods to interact with the `savings goals` service endpoints
-public protocol SavingsServiceProtocol {
+public protocol SavingsServiceProtocol: ServiceProtocol {
     /// Create a savings goal
     /// - Parameters:
     ///   - named: the name to give the savings goal
@@ -24,11 +24,17 @@ public protocol SavingsServiceProtocol {
     ///   - to: the savings goal to add the currency to
     ///   - in: the account that the savings goal belongs to
     /// - Throws: An `APIError` if something went wrong
-    func add(_: CurrencyAmount, to: SavingsGoal, in: Account) async throws
+    func add(_: CurrencyAmount, to: SavingsGoal, in: Account, transferID: UUID) async throws
     // Out of scope: fetch current savings goals
 }
 
 struct SavingsService: SavingsServiceProtocol {
+    var apiClient: StarlingAPIClientProtocol
+
+    public init(apiClient: StarlingAPIClientProtocol = StarlingAPIClient.shared) {
+        self.apiClient = apiClient
+    }
+
     func createSavingsGoal(named goalName: String, in account: Account, currency: CurrencyCode) async throws  -> SavingsGoal
     {
         let url = StarlingAPIClient.baseURL
@@ -36,20 +42,20 @@ struct SavingsService: SavingsServiceProtocol {
             .appending(path: account.accountUid.uuidString.lowercased())
             .appending(path: "savings-goals")
         let requestBody = CreateSavingsGoalRequest(name: goalName, currency: currency, target: CurrencyAmount(currency: currency, minorUnits: .max))
-        let response: CreateSavingsGoalResponse = try await StarlingAPIClient.put(url: url, with: requestBody)
+        let response: CreateSavingsGoalResponse = try await apiClient.put(url: url, with: requestBody)
         return SavingsGoal(name: goalName, id: response.savingsGoalUid)
     }
     
-    func add(_ amount: CurrencyAmount, to savingsGoal: SavingsGoal, in account: Account) async throws {
+    func add(_ amount: CurrencyAmount, to savingsGoal: SavingsGoal, in account: Account, transferID: UUID) async throws {
         let url = StarlingAPIClient.baseURL
             .appending(path: "account")
             .appending(path: account.accountUid.uuidString.lowercased())
             .appending(path: "savings-goals")
             .appending(path: savingsGoal.id.uuidString.lowercased())
             .appending(path: "add-money")
-            .appending(path: UUID().uuidString)
+            .appending(path: transferID.uuidString)
         let requestBody = AddMoneyToSavingsGoalRequest(amount: amount)
-        let _: AddMoneyToSavingsGoalResponse = try await StarlingAPIClient.put(url: url, with: requestBody)
+        let _: AddMoneyToSavingsGoalResponse = try await apiClient.put(url: url, with: requestBody)
     }
     
     

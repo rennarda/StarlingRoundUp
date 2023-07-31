@@ -10,22 +10,22 @@ import Foundation
 public typealias TransferID = UUID
 
 /// The request body to create a savings goal
-struct CreateSavingsGoalRequest: Encodable {
+struct CreateSavingsGoalRequest: Codable {
     let name: String
     let currency: CurrencyCode
     let target: CurrencyAmount
 }
 
 /// The response from creating a savings goal
-struct CreateSavingsGoalResponse: Decodable {
+struct CreateSavingsGoalResponse: Codable {
     let savingsGoalUid: SavingsGoalID
 }
 
-struct AddMoneyToSavingsGoalRequest: Encodable {
+struct AddMoneyToSavingsGoalRequest: Codable, Equatable {
     let amount: CurrencyAmount
 }
 
-struct AddMoneyToSavingsGoalResponse: Decodable {
+struct AddMoneyToSavingsGoalResponse: Codable {
     let success: Bool
     let transferUid: TransferID
 }

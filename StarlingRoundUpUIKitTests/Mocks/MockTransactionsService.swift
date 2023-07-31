@@ -9,6 +9,8 @@ import Foundation
 import StarlingRoundUpUIKit
 
 struct MockTransactionsService: TransactionsServiceProtocol {
+    var apiClient: StarlingAPIClientProtocol = MockAPIClient()
+
     var error: Error?
     
     func getTransactions(for: StarlingRoundUpUIKit.Account, in: Range<Date>) async throws -> [StarlingRoundUpUIKit.Transaction] {
